@@ -12,6 +12,23 @@ if choice == 1:
 
     print("Match started!")
     print(player1, "0 - 0", player2)
+    score1 = 0
+score2 = 0
+
+print("Who won Rally 1?")
+print("1.", player1)
+print("2.", player2)
+
+winner = int(input("Enter your choice: "))
+
+if winner == 1:
+    score1 = score1 + 1
+elif winner == 2:
+    score2 = score2 + 1
+else:
+    print("Invalid choice")
+
+print(player1, score1, "-", score2, player2)
 elif choice == 2:
     print("Exiting RallyLog")
 else:
