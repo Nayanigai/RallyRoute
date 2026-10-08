@@ -16,6 +16,7 @@ if choice == 1:
     score1 = 0
     score2 = 0
     rally = 1
+    rally_history = []
 
     while True:
         print("Who won Rally", rally, "?")
@@ -26,8 +27,12 @@ if choice == 1:
 
         if winner == 1:
             score1 = score1 + 1
+            rally_history.append(player1)
+
         elif winner == 2:
             score2 = score2 + 1
+            rally_history.append(player2)
+
         else:
             print("Invalid choice")
             continue
@@ -45,7 +50,11 @@ if choice == 1:
     else:
         print("Game Winner:", player2)
 
-    print("Final Score:", score1, "-", score2)    
+    print("Final Score:", score1, "-", score2)  
+    print("\n========== RALLY HISTORY ==========")
+    for i in range(len(rally_history)):
+        print("Rally", i + 1, ":", rally_history[i])
+    print("Total Rallies:", len(rally_history))
 elif choice == 2:
     print("Exiting RallyLog")
 
