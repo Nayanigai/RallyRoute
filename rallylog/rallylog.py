@@ -1,4 +1,5 @@
 import csv
+import matplotlib.pyplot as plt
 print("========== RALLYLOG ==========")
 print("1. Start New Match")
 print("2. Exit")
@@ -118,6 +119,48 @@ if choice == 1:
                 longest2 = streak2
     print(player1, "Longest Winning Streak:", longest1)
     print(player2, "Longest Winning Streak:", longest2)
+
+    print("\n========== MATCH GRAPHS ==========")
+
+    players = [player1, player2]
+    points = [score1, score2]
+
+    plt.figure()
+    plt.bar(players, points, color=["royalblue", "tomato"])
+
+    plt.title("RallyLog - Points Comparison")
+    plt.xlabel("Players")
+    plt.ylabel("Points Scored")
+
+    plt.savefig("points_comparison.png")
+    plt.show()
+    
+    score_progress1 = [0]
+    score_progress2 = [0]
+
+    current1 = 0
+    current2 = 0
+    for winner_name in rally_history:
+        if winner_name == player1:
+            current1 = current1 + 1
+        else:
+            current2 = current2 + 1
+        score_progress1.append(current1)
+        score_progress2.append(current2)
+    plt.figure()
+
+    plt.plot(score_progress1, label=player1, marker="o")
+    plt.plot(score_progress2, label=player2, marker="o")
+
+    plt.title("RallyLog - Score Progression")
+    plt.xlabel("Rally Number")
+    plt.ylabel("Cumulative Score")
+
+    plt.legend()
+    plt.grid(True)
+
+    plt.savefig("score_progression.png")
+    plt.show()
     
 elif choice == 2:
     print("Exiting RallyLog")
