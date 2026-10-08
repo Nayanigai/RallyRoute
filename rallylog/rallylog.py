@@ -17,7 +17,7 @@ if choice == 1:
     score2 = 0
     rally = 1
 
-    while score1 < 21 and score2 < 21:
+    while True:
         print("Who won Rally", rally, "?")
         print("1.", player1)
         print("2.", player2)
@@ -34,7 +34,18 @@ if choice == 1:
 
         print(player1, score1, "-", score2, player2)
         rally = rally + 1
+        if score1 == 30 or score2 == 30:
+            break
 
+        if score1 >= 21 or score2 >= 21:
+            if abs(score1 - score2) >= 2:
+                break
+    if score1 > score2:
+        print("Game Winner:", player1)
+    else:
+        print("Game Winner:", player2)
+
+    print("Final Score:", score1, "-", score2)    
 elif choice == 2:
     print("Exiting RallyLog")
 
