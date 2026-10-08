@@ -81,6 +81,44 @@ if choice == 1:
             ])
 
     print("Rally history saved successfully!")
+    
+    print("\n========== MATCH STATISTICS ==========")
+
+    total_rallies = len(rally_history)
+
+    player1_points = rally_history.count(player1)
+    player2_points = rally_history.count(player2)
+
+    player1_percentage = (player1_points / total_rallies) * 100
+    player2_percentage = (player2_points / total_rallies) * 100
+
+    print("Total Rallies:", total_rallies)
+
+    print(player1, "Points:", player1_points)
+    print(player2, "Points:", player2_points)
+
+    print(player1, "Scoring Percentage:", round(player1_percentage, 2), "%")
+    print(player2, "Scoring Percentage:", round(player2_percentage, 2), "%")
+
+    streak1 = 0
+    streak2 = 0
+    longest1 = 0
+    longest2 = 0
+
+    for winner_name in rally_history:
+        if winner_name == player1:
+             streak1 = streak1 + 1
+             streak2 = 0
+             if streak1 > longest1:
+                longest1 = streak1
+        else:
+            streak2 = streak2 + 1
+            streak1 = 0
+            if streak2 > longest2:
+                longest2 = streak2
+    print(player1, "Longest Winning Streak:", longest1)
+    print(player2, "Longest Winning Streak:", longest2)
+    
 elif choice == 2:
     print("Exiting RallyLog")
 
