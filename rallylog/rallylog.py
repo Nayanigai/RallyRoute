@@ -4,13 +4,38 @@ print("========== RALLYLOG ==========")
 print("1. Start New Match")
 print("2. Exit")
 
-choice = int(input("Enter your choice: "))
+while True:
+    try:
+        choice = int(input("Enter your choice: "))
+
+        if choice == 1 or choice == 2:
+            break
+        else:
+            print("Invalid choice. Enter 1 or 2.")
+
+    except ValueError:
+        print("Please enter a number.")
 
 if choice == 1:
     print("Starting a new match")
 
-    player1 = input("Enter Player 1 name: ")
-    player2 = input("Enter Player 2 name: ")
+    while True:
+        player1 = input("Enter Player 1 name: ").strip()
+
+        if player1 != "":
+            break
+        else:
+            print("Player name cannot be empty.")
+
+    while True:
+        player2 = input("Enter Player 2 name: ").strip()
+
+        if player2 == "":
+            print("Player name cannot be empty.")
+        elif player2.lower() == player1.lower():
+            print("Players must have different names.")
+        else:
+            break
 
     print("Match started!")
     print(player1, "0 - 0", player2)
@@ -25,8 +50,11 @@ if choice == 1:
         print("1.", player1)
         print("2.", player2)
 
-        winner = int(input("Enter your choice: "))
-
+        try:
+            winner = int(input("Enter your choice: "))
+        except ValueError:
+            print("Please enter 1 or 2.")
+            continue
         if winner == 1:
             score1 = score1 + 1
             rally_history.append(player1)
