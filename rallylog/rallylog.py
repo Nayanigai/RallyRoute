@@ -1,3 +1,4 @@
+import csv
 print("========== RALLYLOG ==========")
 print("1. Start New Match")
 print("2. Exit")
@@ -55,6 +56,31 @@ if choice == 1:
     for i in range(len(rally_history)):
         print("Rally", i + 1, ":", rally_history[i])
     print("Total Rallies:", len(rally_history))
+    with open("match_results.csv", "a", newline="") as file:
+        writer = csv.writer(file)
+
+        writer.writerow([
+            player1,
+            player2,
+            score1,
+            score2,
+            player1 if score1 > score2 else player2,
+            len(rally_history)
+        ])
+    print("Match result saved successfully!")
+    
+    with open("rally_history.csv", "a", newline="") as file:
+        writer = csv.writer(file)
+
+        for i in range(len(rally_history)):
+            writer.writerow([
+                player1,
+                player2,
+                i + 1,
+                rally_history[i]
+            ])
+
+    print("Rally history saved successfully!")
 elif choice == 2:
     print("Exiting RallyLog")
 
